@@ -106,15 +106,15 @@ builder.build() // return json string (SkillResponse)
 		* 필수가 아닌 값들을 원하는 대로 넣은 후 `build()`메소드를 호출하여 Component를 생성한다.
 ```
 Thumbnail thumbnail = Thumbnail.builder("http://sampleimage.com")
-							.fixedRatio(true)
-							.width(2)
-							.height(1)
-							.build();
-BasicCard basicCard1 = BasicCard.of(thumbnail); // BasicCard(only have thumbnail)
+			.fixedRatio(true)
+			.width(2)
+			.height(1)
+			.build();
+BasicCard basicCard1 = BasicCard.of(thumbnail);    // BasicCard (only have thumbnail)
 BasicCard basicCard2 = BasicCard.builder(thumbnail)
-							.title("title")
-							.description("sample okay?")
-							.build();
+			.title("title")
+			.description("sample okay?")
+			.build();
 
 builder.addComponent(basicCard1);
 builder.addComponent(basicCard2);
@@ -127,8 +127,8 @@ System.out.println(builder.build()); // return json string
 ```
 Button button1 = Button.of("sample label", "phone", null, null, "010-1234-1234", null, null);
 Button button2 = Button.builder("sample label", "phone")
-					.phoneNumber("010-4567-4567")
-					.build();
+			.phoneNumber("010-4567-4567")
+			.build();
 ```
 
 ## Component Structure
