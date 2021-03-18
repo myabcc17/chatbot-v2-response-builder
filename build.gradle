@@ -3,10 +3,39 @@ plugins {
 }
 
 group 'com.github.myabcc17'
-version '1.0-SNAPSHOT'
+archivesBaseName = 'chatbot-response-v2-builder'
+version '0.0.2'
 
 repositories {
     mavenCentral()
+}
+
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+sourceCompatibility = JavaVersion.VERSION_14
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from sourceSets.main.allJava
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
 
 dependencies {
@@ -29,4 +58,49 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: project.property('ossrhUsername'), password: project.property('ossrhPassword'))
+            }
+
+            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: project.property('ossrhUsername'), password: project.property('ossrhPassword'))
+            }
+
+            pom.project {
+                name 'Chatbot Response V2 Builder'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Build kakao openbuilder skill response(v2) easily'
+                url 'https://github.com/myabcc17/chatbot-v2-response-builder'
+
+                scm {
+                    connection 'scm:git:git://github.com/myabcc17/chatbot-v2-response-builder.git'
+                    developerConnection 'scm:git:ssh://github.com/myabcc17/chatbot-v2-response-builder.git'
+                    url 'https://github.com/myabcc17/chatbot-v2-response-builder/main'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'myabcc17'
+                        name 'Woohyeok Jeon'
+                        email 'myabc1721@gmail.com'
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,9 +1,10 @@
+import com.github.myabcc17.SkillResponseV2Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import template.component.SimpleImage;
-import template.component.SimpleText;
+import com.github.myabcc17.template.component.SimpleImage;
+import com.github.myabcc17.template.component.SimpleText;
 
 public class CreateTest {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();

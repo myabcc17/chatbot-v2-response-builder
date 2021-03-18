@@ -10,7 +10,7 @@ https://i.kakao.com/docs/skill-response-format#skillresponse
 사용자는 Json 응답을 만들게 되는데 매우 귀찮은 편이다. 이를 좀 더 편하게 만들 수 있게 SDK를 만들고 싶었다.
 # Usage
 ```
-SkillResponseV2Builder builder = new SkillResponseV2Builder();
+com.github.myabcc17.SkillResponseV2Builder builder = new com.github.myabcc17.SkillResponseV2Builder();
 builder.addComponent(Component); // max Component is 3
 builder.addQuickReply(QuickReply); // max QuickReply is 10
 builder.addContext(ContextValue);
