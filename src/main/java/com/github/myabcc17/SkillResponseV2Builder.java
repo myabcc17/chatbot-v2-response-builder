@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.github.myabcc17.template.ContextValue;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import com.github.myabcc17.template.QuickReply;
@@ -14,16 +16,16 @@ import com.github.myabcc17.template.component.SimpleText;
 public class SkillResponseV2Builder {
     private List<Component> components;
     private List<QuickReply> quickReplies;
-    private List<String> contextValues;
+    private List<ContextValue> contextValues;
     private Map<String, Object> data;
 
     private static final String FIELD_VERSION = "version";
     private static final String FIELD_VERSION_VALUE = "2.0";
-    private static final String FIELD_TEMPLATE = "com/github/myabcc17/template";
+    private static final String FIELD_TEMPLATE = "template";
     private static final String FIELD_OUTPUTS = "outputs";
     private static final String FIELD_QUICK_REPLIES = "quickReplies";
     private static final String FIELD_CONTEXT = "context";
-    private static final String FIELD_CONTEXT_VALUE = "values";
+    private static final String FIELD_CONTEXT_VALUES = "values";
     private static final String FIELD_DATA = "data";
     private static final String DEFAULT_MESSAGE = "Default Message";
 
@@ -62,13 +64,12 @@ public class SkillResponseV2Builder {
         response.put(FIELD_TEMPLATE, template);
 
         if (!CollectionUtils.isEmpty(contextValues)) {
-            response.put(FIELD_CONTEXT, Map.of(FIELD_CONTEXT_VALUE, contextValues));
+            response.put(FIELD_CONTEXT, Map.of(FIELD_CONTEXT_VALUES, contextValues));
         }
 
         if (!MapUtils.isEmpty(data)) {
             response.put(FIELD_DATA, data);
         }
-
 
         return response;
     }
@@ -89,7 +90,7 @@ public class SkillResponseV2Builder {
         return this;
     }
 
-   public SkillResponseV2Builder addContext(String context) {
+   public SkillResponseV2Builder addContextValue(ContextValue context) {
        if (this.contextValues == null) {
            contextValues = new ArrayList<>();
        }

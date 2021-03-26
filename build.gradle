@@ -4,7 +4,7 @@ plugins {
 
 group 'com.github.myabcc17'
 archivesBaseName = 'chatbot-response-v2-builder'
-version '0.0.2'
+version '0.0.3'
 
 repositories {
     mavenCentral()

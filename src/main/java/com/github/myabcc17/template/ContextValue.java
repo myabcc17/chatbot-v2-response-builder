@@ -1,5 +1,7 @@
 package com.github.myabcc17.template;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +12,14 @@ public class ContextValue {
 
     private ContextValue(String name, int lifeSpan,
             Map<String, String> params) {
+        if (StringUtils.isEmpty(name)) {
+            throw new RuntimeException("contextValue name cannot be empty");
+        }
+
+        if (lifeSpan <= 0) {
+            throw new RuntimeException("lifeSpan cannot be negative");
+        }
+
         this.name = name;
         this.lifeSpan = lifeSpan;
         this.params = params;
