@@ -1,9 +1,12 @@
 package com.github.myabcc17.template.common;
 
 import java.util.Objects;
+
+import lombok.Getter;
 import org.apache.commons.lang3.BooleanUtils;
 import com.github.myabcc17.utils.UrlUtils;
 
+@Getter
 public class Thumbnail {
     private final String imageUrl;
     private final Link link;

@@ -2,9 +2,12 @@ package com.github.myabcc17.template.component;
 
 import java.util.List;
 import java.util.Objects;
+
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import com.github.myabcc17.template.common.CarouselHeader;
 
+@Getter
 public class Carousel extends Component {
     private final String type;
     private final List<CarouselItem> items;

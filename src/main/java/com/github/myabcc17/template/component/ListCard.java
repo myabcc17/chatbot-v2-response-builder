@@ -3,7 +3,9 @@ package com.github.myabcc17.template.component;
 import java.util.List;
 import java.util.Objects;
 import com.github.myabcc17.template.common.Button;
+import lombok.Getter;
 
+@Getter
 public class ListCard extends Component {
     private final ListItem header;
     private final List<ListItem> items;

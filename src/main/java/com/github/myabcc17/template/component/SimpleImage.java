@@ -2,7 +2,9 @@ package com.github.myabcc17.template.component;
 
 import java.util.Objects;
 import com.github.myabcc17.utils.UrlUtils;
+import lombok.Getter;
 
+@Getter
 public class SimpleImage extends Component {
     private final String imageUrl;
     private final String altText;

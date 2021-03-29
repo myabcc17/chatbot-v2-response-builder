@@ -15,7 +15,16 @@
       }
     }
   },
-  "contexts": [],
+  "contexts": [
+    {
+      "name": "Score",
+      "lifespan": 8,
+      "ttl": 3600,
+      "params": {
+        "score": "10"
+      }
+    }
+  ],
   "bot": {
     "id": "봇 id",
     "name": "봇 이름"
@@ -24,7 +33,7 @@
     "name": "스킬 이름",
     "clientExtra": null,
     "params": {},
-    "id": "스킬 id",
+    "id": "스킬 idmav",
     "detailParams": {}
   }
 }

@@ -2,12 +2,15 @@ package com.github.myabcc17.template.component;
 
 import java.util.List;
 import java.util.Objects;
+
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import com.github.myabcc17.template.common.Button;
 import com.github.myabcc17.template.common.Profile;
 import com.github.myabcc17.template.common.Thumbnail;
 import com.github.myabcc17.utils.StringValidator;
 
+@Getter
 public class CommerceCard extends Component implements CarouselItem {
     private final String description;
     private final int price;

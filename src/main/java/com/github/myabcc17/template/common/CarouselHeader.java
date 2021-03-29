@@ -1,7 +1,10 @@
 package com.github.myabcc17.template.common;
 
+import lombok.Getter;
+
 import java.util.Objects;
 
+@Getter
 public class CarouselHeader {
     private final String title;
     private final String description;

@@ -2,7 +2,9 @@ package com.github.myabcc17.template.component;
 
 import java.util.Objects;
 import com.github.myabcc17.template.common.Link;
+import lombok.Getter;
 
+@Getter
 public class ListItem {
     private final String title;
     private String description;

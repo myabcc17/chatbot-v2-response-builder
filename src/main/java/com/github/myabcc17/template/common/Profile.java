@@ -1,7 +1,10 @@
 package com.github.myabcc17.template.common;
 
+import lombok.Getter;
+
 import java.util.Objects;
 
+@Getter
 public class Profile {
     private final String nickname;
     private String imageUrl;

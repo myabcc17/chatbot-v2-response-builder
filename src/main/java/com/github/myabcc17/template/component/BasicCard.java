@@ -6,7 +6,9 @@ import com.github.myabcc17.template.common.Button;
 import com.github.myabcc17.template.common.Profile;
 import com.github.myabcc17.template.common.Social;
 import com.github.myabcc17.template.common.Thumbnail;
+import lombok.Getter;
 
+@Getter
 public class BasicCard extends Component implements CarouselItem {
     private String title;
     private String description;

@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.github.myabcc17.annotation.AnnotationBasedExclusionStrategy;
 import com.github.myabcc17.template.ContextValue;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import com.github.myabcc17.template.QuickReply;
@@ -31,6 +34,11 @@ public class SkillResponseV2Builder {
 
     private static final int MAX_COMPONENT = 3;
     private static final int MAX_QUICKREPLY = 10;
+
+    private static final Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .setExclusionStrategies(new AnnotationBasedExclusionStrategy())
+            .create();
 
     public SkillResponseV2Builder() { }
 
@@ -71,7 +79,7 @@ public class SkillResponseV2Builder {
             response.put(FIELD_DATA, data);
         }
 
-        return response;
+        return gson.fromJson(gson.toJson(response), Map.class);
     }
 
     public SkillResponseV2Builder addComponent(Component component) {

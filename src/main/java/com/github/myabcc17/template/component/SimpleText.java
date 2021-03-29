@@ -1,7 +1,10 @@
 package com.github.myabcc17.template.component;
 
+import lombok.Getter;
+
 import java.util.Objects;
 
+@Getter
 public class SimpleText extends Component {
     private final String text;
 

@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.Objects;
 import com.github.myabcc17.utils.StringValidator;
 import com.github.myabcc17.utils.UrlUtils;
+import lombok.Getter;
 
+@Getter
 public class Button {
     private final String label;
     private final String action;

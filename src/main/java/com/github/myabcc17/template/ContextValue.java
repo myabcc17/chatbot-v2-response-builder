@@ -1,10 +1,12 @@
 package com.github.myabcc17.template;
 
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class ContextValue {
     private final String name;
     private final int lifeSpan;
@@ -16,7 +18,7 @@ public class ContextValue {
             throw new RuntimeException("contextValue name cannot be empty");
         }
 
-        if (lifeSpan <= 0) {
+        if (lifeSpan < 0) {
             throw new RuntimeException("lifeSpan cannot be negative");
         }
 
