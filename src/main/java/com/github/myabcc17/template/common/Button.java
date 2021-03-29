@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import com.github.myabcc17.exception.InvalidUrlException;
 import com.github.myabcc17.utils.StringValidator;
 import com.github.myabcc17.utils.UrlUtils;
 import lombok.Getter;
@@ -36,16 +38,16 @@ public class Button {
         switch (action) {
             case "webLink" -> {
                 Objects.requireNonNull(webLinkUrl);
-                if (UrlUtils.isValidUrl(webLinkUrl)) {
-                    throw new RuntimeException("URL 형식이 아닙니다.");
+                if (!UrlUtils.isValidUrl(webLinkUrl)) {
+                    throw new InvalidUrlException();
                 }
             }
             case "message" -> Objects.requireNonNull(messageText);
             case "phone" -> Objects.requireNonNull(phoneNumber);
             case "block" -> {
                 Objects.requireNonNull(webLinkUrl);
-                if (UrlUtils.isValidUrl(webLinkUrl)) {
-                    throw new RuntimeException("URL 형식이 아닙니다.");
+                if (!UrlUtils.isValidUrl(webLinkUrl)) {
+                    throw new InvalidUrlException();
                 }
                 Objects.requireNonNull(blockId);
             }

@@ -1,5 +1,6 @@
 package com.github.myabcc17.template.component;
 
+import com.github.myabcc17.utils.StringValidator;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -15,9 +16,8 @@ public class SimpleText extends Component {
 
         Objects.requireNonNull(text);
 
-        if (text.length() > MAX_TEXT_LENGTH) {
-            throw new RuntimeException(String.format("최대 길이 %d자를 초과했습니다.", MAX_TEXT_LENGTH));
-        }
+        StringValidator.validateLength("text", MAX_TEXT_LENGTH);
+
         this.text = text;
     }
 

@@ -1,8 +1,11 @@
 package com.github.myabcc17.template.component;
 
-import java.util.Objects;
+import com.github.myabcc17.exception.InvalidUrlException;
+import com.github.myabcc17.utils.StringValidator;
 import com.github.myabcc17.utils.UrlUtils;
 import lombok.Getter;
+
+import java.util.Objects;
 
 @Getter
 public class SimpleImage extends Component {
@@ -17,13 +20,11 @@ public class SimpleImage extends Component {
         Objects.requireNonNull(imageUrl);
         Objects.requireNonNull(altText);
 
-        if (UrlUtils.isValidUrl(imageUrl)) {
-            throw new RuntimeException("URL 형식이 아닙니다.");
+        if (!UrlUtils.isValidUrl(imageUrl)) {
+            throw new InvalidUrlException();
         }
 
-        if (altText.length() >= MAX_ALT_TEXT) {
-            throw new RuntimeException(String.format("altText는 최대 %d자 입니다.", MAX_ALT_TEXT));
-        }
+        StringValidator.validateLength("altText", MAX_ALT_TEXT);
 
         this.imageUrl = imageUrl;
         this.altText = altText;

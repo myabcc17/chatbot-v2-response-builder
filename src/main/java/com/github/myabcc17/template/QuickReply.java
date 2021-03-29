@@ -25,6 +25,7 @@ public class QuickReply {
                 Objects.requireNonNull(blockId);
             }
         }
+
         this.label = label;
         this.action = action;
         this.messageText = messageText;
