@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Getter
 public class SkillPayload {
@@ -24,15 +25,16 @@ public class SkillPayload {
         return null;
     }
 
-    public ContextPayload getContextByName(String contextName) {
+    public Optional<ContextPayload> getContextByName(String contextName) {
         return this.getContexts().stream()
                 .filter(contextPayload -> contextPayload.getName().equals(contextName))
-                .findFirst()
-                .orElseGet(null);
+                .findFirst();
     }
 
     public String getContextParamValueByNameAndKey(String contextName, String key) {
-        return ((Map<String, String>)this.getContextByName(contextName).getParams().get(key)).get("value");
+        return this.getContextByName(contextName)
+                .map(c -> ((Map<String, String>)c.getParams().get(key)).get("value"))
+                .orElse(null);
     }
 
     public String getActionParamByName(String paramName) {

@@ -12,7 +12,7 @@ import lombok.Getter;
 public class BasicCard extends Component implements CarouselItem {
     private String title;
     private String description;
-    private final Thumbnail thumbnail;
+    private Thumbnail thumbnail;
     private Profile profile;
     private Social social;
     private List<Button> buttons;
@@ -24,7 +24,13 @@ public class BasicCard extends Component implements CarouselItem {
             Social social, List<Button> buttons) {
         super("basicCard");
 
-        Objects.requireNonNull(thumbnail, "thumbnail은 null이 될 수 없습니다.");
+        /**
+         * v1 card.text -> v2 basicCard: thumbnail 없어도 됨 (V2 응답 도움말에 없는 내용)
+         * v1 card.image -> v2 basicCard: thumbnail 있어야함
+         */
+        if (thumbnail == null) {
+            Objects.requireNonNull(description);
+        }
 
         if (description != null && description.length() > MAX_DESCRIPTION) {
             throw new RuntimeException(String.format("description은 %d자를 넘을 수 없습니다.", MAX_DESCRIPTION));
@@ -46,9 +52,8 @@ public class BasicCard extends Component implements CarouselItem {
         return new BasicCard(null, null, thumbnail, null, null, null);
     }
 
-    public static BasicCard of(String title, String description, Thumbnail thumbnail,
-            List<Button> buttons) {
-        return new BasicCard(title, description, thumbnail, null, null, buttons);
+    public static BasicCard of(String description, List<Button> buttons) {
+        return new BasicCard(null, description, null, null, null, buttons);
     }
 
     public static BasicCard of(String title, String description, Thumbnail thumbnail,
@@ -56,21 +61,19 @@ public class BasicCard extends Component implements CarouselItem {
         return new BasicCard(title, description, thumbnail, profile, social, buttons);
     }
 
-    public static BasicCardBuilder builder(Thumbnail thumbnail) {
-        return new BasicCardBuilder(thumbnail);
+    public static BasicCardBuilder builder() {
+        return new BasicCardBuilder();
     }
 
     public static class BasicCardBuilder {
         private String title;
         private String description;
-        private final Thumbnail thumbnail;
+        private Thumbnail thumbnail;
         private Profile profile;
         private Social social;
         private List<Button> buttons;
 
-        public BasicCardBuilder(Thumbnail thumbnail) {
-            this.thumbnail = thumbnail;
-        }
+        public BasicCardBuilder() { }
 
         public BasicCardBuilder title(String title) {
             this.title = title;
@@ -79,6 +82,11 @@ public class BasicCard extends Component implements CarouselItem {
 
         public BasicCardBuilder description(String description) {
             this.description = description;
+            return this;
+        }
+
+        public BasicCardBuilder thumbnail(Thumbnail thumbnail) {
+            this.thumbnail = thumbnail;
             return this;
         }
 
