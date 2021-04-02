@@ -15,7 +15,7 @@ public class Thumbnail {
     private final Integer width;
     private final Integer height;
 
-    public Thumbnail(String imageUrl, Link link, boolean fixedRatio, int width, int height) {
+    public Thumbnail(String imageUrl, Link link, Boolean fixedRatio, Integer width, Integer height) {
         Objects.requireNonNull(imageUrl);
 
         if (!UrlUtils.isValidUrl(imageUrl)) {

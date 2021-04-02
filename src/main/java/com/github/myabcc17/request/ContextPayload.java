@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.Map;
 
 @Getter
-public class Context {
+public class ContextPayload {
     private String name;
     private Integer lifespan;
     private Map<String, Object> params;

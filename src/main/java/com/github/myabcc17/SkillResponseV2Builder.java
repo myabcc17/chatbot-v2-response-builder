@@ -106,6 +106,13 @@ public class SkillResponseV2Builder {
         return this;
     }
 
+    public SkillResponseV2Builder removeContext(String contextName) {
+        if (this.contextValues != null) {
+            contextValues.add(ContextValue.builder(contextName, 0).build());
+        }
+        return this;
+    }
+
     public SkillResponseV2Builder addData(String key, Object value) {
         if (this.data == null) {
             data = new HashMap<>();

@@ -45,11 +45,8 @@ public class Button {
             case "message" -> Objects.requireNonNull(messageText);
             case "phone" -> Objects.requireNonNull(phoneNumber);
             case "block" -> {
-                Objects.requireNonNull(webLinkUrl);
-                if (!UrlUtils.isValidUrl(webLinkUrl)) {
-                    throw new InvalidUrlException();
-                }
                 Objects.requireNonNull(blockId);
+                Objects.requireNonNull(messageText);
             }
         }
 
