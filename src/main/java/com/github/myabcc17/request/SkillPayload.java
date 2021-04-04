@@ -18,11 +18,9 @@ public class SkillPayload {
     private BotPayload bot;
     private List<ContextPayload> contexts;
 
-    public String getUtterance() {
-        if (userRequest != null && userRequest.getUtterance() != null) {
-            return userRequest.getUtterance();
-        }
-        return null;
+    public Optional<String> getUtterance() {
+        return Optional.ofNullable(userRequest)
+                .map(UserRequestPayload::getUtterance);
     }
 
     public Optional<ContextPayload> getContextByName(String contextName) {
@@ -31,14 +29,9 @@ public class SkillPayload {
                 .findFirst();
     }
 
-    public String getContextParamValueByNameAndKey(String contextName, String key) {
-        return this.getContextByName(contextName)
-                .map(c -> ((Map<String, String>)c.getParams().get(key)).get("value"))
-                .orElse(null);
-    }
-
-    public String getActionParamByName(String paramName) {
-        return this.getAction().getParams().get(paramName);
+    public Optional<String> getActionParamByName(String paramName) {
+        return Optional.ofNullable(this.getAction().getParams())
+                .map(m -> m.get(paramName));
     }
 
     public static SkillPayload from(Map<String, Object> payload) {
