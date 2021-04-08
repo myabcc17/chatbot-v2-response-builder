@@ -18,9 +18,8 @@ public class SkillPayload {
     private BotPayload bot;
     private List<ContextPayload> contexts;
 
-    public Optional<String> getUtterance() {
-        return Optional.ofNullable(userRequest)
-                .map(UserRequestPayload::getUtterance);
+    public String getUtterance() {
+        return userRequest.getUtterance();
     }
 
     public Optional<ContextPayload> getContextByName(String contextName) {
@@ -29,9 +28,8 @@ public class SkillPayload {
                 .findFirst();
     }
 
-    public Optional<String> getActionParamByName(String paramName) {
-        return Optional.ofNullable(this.getAction().getParams())
-                .map(m -> m.get(paramName));
+    public String getActionParamByName(String paramName) {
+        return action.getParams().get(paramName);
     }
 
     public static SkillPayload from(Map<String, Object> payload) {

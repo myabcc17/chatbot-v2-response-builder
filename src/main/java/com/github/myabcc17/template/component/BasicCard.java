@@ -16,12 +16,13 @@ public class BasicCard extends Component implements CarouselItem {
     private Profile profile;
     private Social social;
     private List<Button> buttons;
+    private Boolean forwardable;
 
     private static final int MAX_DESCRIPTION = 230;
     private static final int MAX_BUTTON = 3;
 
     private BasicCard(String title, String description, Thumbnail thumbnail, Profile profile,
-            Social social, List<Button> buttons) {
+            Social social, List<Button> buttons, Boolean forwardable) {
         super("basicCard");
 
         /**
@@ -46,19 +47,20 @@ public class BasicCard extends Component implements CarouselItem {
         this.profile = profile;
         this.social = social;
         this.buttons = buttons;
+        this.forwardable = forwardable;
     }
 
     public static BasicCard of(Thumbnail thumbnail) {
-        return new BasicCard(null, null, thumbnail, null, null, null);
+        return new BasicCard(null, null, thumbnail, null, null, null, false);
     }
 
     public static BasicCard of(String description, List<Button> buttons) {
-        return new BasicCard(null, description, null, null, null, buttons);
+        return new BasicCard(null, description, null, null, null, buttons, false);
     }
 
     public static BasicCard of(String title, String description, Thumbnail thumbnail,
-            Profile profile, Social social, List<Button> buttons) {
-        return new BasicCard(title, description, thumbnail, profile, social, buttons);
+            Profile profile, Social social, List<Button> buttons, Boolean forwardable) {
+        return new BasicCard(title, description, thumbnail, profile, social, buttons, forwardable);
     }
 
     public static BasicCardBuilder builder() {
@@ -72,6 +74,7 @@ public class BasicCard extends Component implements CarouselItem {
         private Profile profile;
         private Social social;
         private List<Button> buttons;
+        private Boolean forwardable;
 
         public BasicCardBuilder() { }
 
@@ -105,8 +108,13 @@ public class BasicCard extends Component implements CarouselItem {
             return this;
         }
 
+        public BasicCardBuilder forwardable(boolean forwardable) {
+            this.forwardable = forwardable;
+            return this;
+        }
+
         public BasicCard build() {
-            return new BasicCard(title, description, thumbnail, profile, social, buttons);
+            return new BasicCard(title, description, thumbnail, profile, social, buttons, forwardable);
         }
     }
 }
