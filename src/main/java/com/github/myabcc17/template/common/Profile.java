@@ -1,7 +1,5 @@
 package com.github.myabcc17.template.common;
 
-import com.github.myabcc17.exception.InvalidUrlException;
-import com.github.myabcc17.utils.UrlUtils;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -13,10 +11,6 @@ public class Profile {
 
     private Profile(String nickname, String imageUrl) {
         Objects.requireNonNull(nickname);
-
-        if (!UrlUtils.isValidUrl(imageUrl)) {
-            throw new InvalidUrlException();
-        }
 
         this.nickname = nickname;
         this.imageUrl = imageUrl;

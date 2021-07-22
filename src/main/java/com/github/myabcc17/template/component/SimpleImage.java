@@ -1,8 +1,6 @@
 package com.github.myabcc17.template.component;
 
-import com.github.myabcc17.exception.InvalidUrlException;
 import com.github.myabcc17.utils.StringValidator;
-import com.github.myabcc17.utils.UrlUtils;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -19,10 +17,6 @@ public class SimpleImage extends Component {
 
         Objects.requireNonNull(imageUrl);
         Objects.requireNonNull(altText);
-
-        if (!UrlUtils.isValidUrl(imageUrl)) {
-            throw new InvalidUrlException();
-        }
 
         StringValidator.validateLength("altText", MAX_ALT_TEXT);
 

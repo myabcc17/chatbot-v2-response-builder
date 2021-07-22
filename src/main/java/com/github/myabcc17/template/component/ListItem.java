@@ -2,9 +2,7 @@ package com.github.myabcc17.template.component;
 
 import java.util.Objects;
 
-import com.github.myabcc17.exception.InvalidUrlException;
 import com.github.myabcc17.template.common.Link;
-import com.github.myabcc17.utils.UrlUtils;
 import lombok.Getter;
 
 @Getter
@@ -16,10 +14,6 @@ public class ListItem {
 
     private ListItem(String title, String description, String imageUrl, Link link) {
         Objects.requireNonNull(title);
-
-        if (imageUrl != null && !UrlUtils.isValidUrl(imageUrl))  {
-            throw new InvalidUrlException();
-        }
 
         this.title = title;
         this.description = description;

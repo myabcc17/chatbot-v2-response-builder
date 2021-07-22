@@ -13,42 +13,53 @@ public class QuickReply {
     private String blockId;
     private Map<String, Object> extra;
 
-    private QuickReply(String label, String action, String messageText, String blockId,
+    public enum Action {
+        MESSAGE("message"),
+        BLOCK("block");
+
+        private String value;
+
+        Action(String value) {
+            this.value = value;
+        }
+    }
+
+    private QuickReply(String label, Action action, String messageText, String blockId,
             Map<String, Object> extra) {
         Objects.requireNonNull(label);
         Objects.requireNonNull(action);
 
         switch (action) {
-            case "message" -> Objects.requireNonNull(messageText);
-            case "block" -> {
+            case MESSAGE -> Objects.requireNonNull(messageText);
+            case BLOCK -> {
                 Objects.requireNonNull(messageText);
                 Objects.requireNonNull(blockId);
             }
         }
 
         this.label = label;
-        this.action = action;
+        this.action = action.value;
         this.messageText = messageText;
         this.blockId = blockId;
         this.extra = extra;
     }
 
-    public static QuickReply of(String label, String action, String messageText, String blockId, Map<String, Object> extra) {
+    public static QuickReply of(String label, Action action, String messageText, String blockId, Map<String, Object> extra) {
         return new QuickReply(label, action, messageText, blockId, extra);
     }
 
-    public static QuickReplyBuilder builder(String label, String action) {
+    public static QuickReplyBuilder builder(String label, Action action) {
         return new QuickReplyBuilder(label, action);
     }
 
     public static class QuickReplyBuilder {
         private final String label;
-        private final String action;
+        private final Action action;
         private String messageText;
         private String blockId;
         private Map<String, Object> extra;
 
-        public QuickReplyBuilder(String label, String action) {
+        public QuickReplyBuilder(String label, Action action) {
             this.label = label;
             this.action = action;
         }

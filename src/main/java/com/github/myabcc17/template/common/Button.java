@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import com.github.myabcc17.exception.InvalidUrlException;
 import com.github.myabcc17.utils.StringValidator;
-import com.github.myabcc17.utils.UrlUtils;
 import lombok.Getter;
 
 @Getter
@@ -47,12 +45,7 @@ public class Button {
         StringValidator.validateLength(label, MAX_LABEL);
 
         switch (action) {
-            case WEBLINK -> {
-                Objects.requireNonNull(webLinkUrl);
-                if (!UrlUtils.isValidUrl(webLinkUrl)) {
-                    throw new InvalidUrlException();
-                }
-            }
+            case WEBLINK -> Objects.requireNonNull(webLinkUrl);
             case MESSAGE -> Objects.requireNonNull(messageText);
             case PHONE -> Objects.requireNonNull(phoneNumber);
             case BLOCK -> {

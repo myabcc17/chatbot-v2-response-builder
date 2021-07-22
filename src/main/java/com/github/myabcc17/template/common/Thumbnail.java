@@ -2,10 +2,8 @@ package com.github.myabcc17.template.common;
 
 import java.util.Objects;
 
-import com.github.myabcc17.exception.InvalidUrlException;
 import lombok.Getter;
 import org.apache.commons.lang3.BooleanUtils;
-import com.github.myabcc17.utils.UrlUtils;
 
 @Getter
 public class Thumbnail {
@@ -17,10 +15,6 @@ public class Thumbnail {
 
     public Thumbnail(String imageUrl, Link link, Boolean fixedRatio, Integer width, Integer height) {
         Objects.requireNonNull(imageUrl);
-
-        if (!UrlUtils.isValidUrl(imageUrl)) {
-            throw new InvalidUrlException();
-        }
 
         if (BooleanUtils.isTrue(fixedRatio)) {
             Objects.requireNonNull(width);
