@@ -19,7 +19,7 @@ public class Button {
     private Map<String, Object> extra;
 
     private static final int MAX_LABEL = 14;
-    private static final List<String> actionCadidates = List.of("webLink", "message", "block", "phone", "share", "operator");
+    private static final List<String> actionCadidates = List.of("webLink", "message", "block", "phone", "share", "operator", "addChannel");
 
     public enum Action {
         WEBLINK("webLink"),
@@ -27,7 +27,8 @@ public class Button {
         BLOCK("block"),
         PHONE("phone"),
         SHARE("share"),
-        OPERATOR("operator");
+        OPERATOR("operator"),
+        ADD_CHANNEL("addChannel");
 
         private String value;
 
