@@ -49,10 +49,7 @@ public class Button {
             case WEBLINK -> Objects.requireNonNull(webLinkUrl);
             case MESSAGE -> Objects.requireNonNull(messageText);
             case PHONE -> Objects.requireNonNull(phoneNumber);
-            case BLOCK -> {
-                Objects.requireNonNull(blockId);
-                Objects.requireNonNull(messageText);
-            }
+            case BLOCK -> Objects.requireNonNull(blockId);
         }
 
         this.label = label;
