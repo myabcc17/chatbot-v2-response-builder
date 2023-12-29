@@ -4,6 +4,8 @@ https://i.kakao.com/docs/skill-response-format#skillresponse
 
 카카오 오픈빌더의 Json 형식 스킬응답을 보다 쉽게 만들수 있게 제공되는 SDK 입니다.
 
+implementation("com.github.myabcc17:chatbot-response-v2-builder:0.0.14")
+
 # Background
 
 카카오 오픈빌더를 사용하면서 좀 더 정교한 응답을 위해 사용자가 스킬 서버를 직접 만들어야 할 때가 있다. 
